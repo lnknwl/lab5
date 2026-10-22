@@ -1,0 +1,31 @@
+@startuml
+title Лабораторная работа №5 — Подключение библиотек
+left to right direction
+
+artifact "Complex.cpp\nCalculator.cpp" as source
+artifact "clients/main.cpp\ntests/Tests.cpp" as client
+
+package "Статическая сборка" {
+    artifact "Complex.o\nCalculator.o" as staticObjects
+    artifact "liblab3.a" as archive
+    artifact "lab5-static.exe" as staticClient
+}
+
+package "Динамическая сборка" {
+    artifact "Complex.o\nCalculator.o\nLAB3_SHARED + LAB3_BUILD" as sharedObjects
+    artifact "lab3.dll" as dll
+    artifact "lab3.lib\nбиблиотека импорта" as importLib
+    artifact "lab5-dynamic.exe" as dynamicClient
+}
+
+source --> staticObjects : g++ -c
+staticObjects --> archive : ar rcs
+archive --> staticClient : линковка
+client --> staticClient : g++
+source --> sharedObjects : g++ -c
+sharedObjects --> dll : g++ -shared
+dll ..> importLib : --out-implib
+importLib --> dynamicClient : линковка
+client --> dynamicClient : g++ + LAB3_SHARED
+dynamicClient ..> dll : загрузка при запуске
+@enduml

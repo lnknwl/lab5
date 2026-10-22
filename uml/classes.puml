@@ -1,0 +1,51 @@
+@startuml
+title Лабораторная работа №5. Вариант 4 — Комплексное число
+skinparam classAttributeIconSize 0
+
+class Complex {
+    - realPart : double
+    - imaginaryPart : double
+    - {static} objectCount : int
+    + Complex()
+    + Complex(realPart : double, imaginaryPart : double)
+    + Complex(other : const Complex&)
+    + operator=(other : const Complex&) : Complex&
+    + ~Complex()
+    - changeRealPart(change : double) : void
+    - assignResult(newRealPart : long double, newImaginaryPart : long double) : void
+    + operator++() : Complex&
+    + operator++(unused : int) : Complex
+    + operator--() : Complex&
+    + operator--(unused : int) : Complex
+    + operator+=(other : const Complex&) : Complex&
+    + operator-=(other : const Complex&) : Complex&
+    + operator*=(other : const Complex&) : Complex&
+    + operator/=(other : const Complex&) : Complex&
+    + operator+(other : const Complex&) const : Complex
+    + operator-(other : const Complex&) const : Complex
+    + operator*(other : const Complex&) const : Complex
+    + operator/(other : const Complex&) const : Complex
+    + operator<(other : const Complex&) const : bool
+    + operator>(other : const Complex&) const : bool
+    + operator<=(other : const Complex&) const : bool
+    + operator>=(other : const Complex&) const : bool
+    + operator==(other : const Complex&) const : bool
+    + operator!=(other : const Complex&) const : bool
+    + getRealPart() const : double
+    + getImaginaryPart() const : double
+    + getModulus() const : double
+    + {static} getObjectCount() : int
+    + printInfo() const : void
+}
+
+class Calculator {
+    - current : Complex
+    - history : std::vector<std::string>
+    + enterNumber(number : const Complex&) : void
+    + getCurrent() const : const Complex&
+    + getHistory() const : const std::vector<std::string>&
+    + calculate(operation : const std::string&, other : const Complex&) : std::string
+}
+
+Calculator "1" *-- "1" Complex : текущее число
+@enduml

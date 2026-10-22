@@ -1,0 +1,23 @@
+PROJECT_NAME           = "Лабораторная работа №5"
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = Russian
+
+INPUT                  = README.md pages include src clients tests
+FILE_PATTERNS          = *.h *.hpp *.cpp *.md
+RECURSIVE              = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+MARKDOWN_SUPPORT       = YES
+
+USE_MDFILE_AS_MAINPAGE  = README.md
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
